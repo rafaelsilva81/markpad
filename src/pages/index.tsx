@@ -5,8 +5,9 @@ import Image from 'next/image';
 import React from 'react';
 import Router from 'next/router';
 import FullscreanLoader from '../components/FullscreanLoader';
+import Logo from '../assets/logo.png';
 
-export default function Home() {
+const Home = () => {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [loading, setLoading] = React.useState(false);
 
@@ -31,18 +32,14 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Markpad - Home</title>
+        <title>Markpad</title>
         <meta
           name='description'
-          content='Markpad'
+          content='Markpad is a simple markdown editor, built for sharing notes and ideas.'
         />
         <meta
           name='viewport'
           content='width=device-width, initial-scale=1'
-        />
-        <link
-          rel='icon'
-          href='/favicon.ico'
         />
       </Head>
 
@@ -50,7 +47,15 @@ export default function Home() {
         {loading && <FullscreanLoader />}
 
         {/* Title */}
-        <h1 className='text-4xl font-bold'>Markpad</h1>
+        <div className='flex flex-row items-center justify-center'>
+          <h1 className='text-4xl font-bold'>Markpad</h1>
+          <Image
+            src={Logo}
+            width={48}
+            height={48}
+            alt='markpad-logo'
+          />
+        </div>
         <p className='text-lg'>
           A simple markdown editor, built with Next.js and Tailwind CSS.
         </p>
@@ -121,4 +126,6 @@ export default function Home() {
       </main>
     </>
   );
-}
+};
+
+export default Home;

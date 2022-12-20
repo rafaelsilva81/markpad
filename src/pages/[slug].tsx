@@ -67,6 +67,17 @@ const Page = (props: PageProps) => {
 
   return (
     <>
+      <Head>
+        <title>{slug} - Markpad</title>
+        <meta
+          name='description'
+          content='Markpad'
+        />
+        <meta
+          name='viewport'
+          content='width=device-width, initial-scale=1'
+        />
+      </Head>
       <main className='h-screen w-screen bg-neutral-100 flex flex-col'>
         {/* Header */}
         {!isLocked && (
