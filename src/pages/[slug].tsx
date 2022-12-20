@@ -6,6 +6,7 @@ import api from '../lib/axios';
 import Header from '../components/Header';
 import Toolbar from '../components/Toolbar';
 import Link from 'next/link';
+import Router from 'next/router';
 
 /* TODO: Componentizaion and File Locking */
 
@@ -14,7 +15,12 @@ const default_md = `### You can start typing in [Markdown](https://www.markdowng
 Just please be **aware when writing personal information here**. This page is public and can be accessed by **anyone**.
 `;
 
-const Page = ({ page }: { page: PageResponse }) => {
+interface PageProps {
+  page: PageResponse;
+}
+
+const Page = (props: PageProps) => {
+  const { page } = props;
   const { content, slug, locked } = page;
   const [isLocked, setIsLocked] = React.useState<boolean>(locked);
   const [text, setText] = React.useState(content === '' ? default_md : content);
@@ -124,6 +130,17 @@ const Page = ({ page }: { page: PageResponse }) => {
 
 export const getServerSideProps = async (context: { query: { slug: any } }) => {
   const { slug } = context.query;
+
+  // Check regex for slug
+  if (!slug.match(/^[a-zA-Z0-9-]+$/)) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/',
+      },
+      props: {},
+    };
+  }
 
   //TODO: Get page from database
   let data = await prisma.markpad_Page.findUnique({

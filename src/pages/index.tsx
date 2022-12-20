@@ -14,6 +14,15 @@ export default function Home() {
     if (inputRef.current) {
       const url = inputRef.current.value;
       if (!url) return;
+      // Check regex here /^[a-z0-9-]+$/
+      let regex = /^[a-z0-9-]+$/;
+      if (!regex.test(url)) {
+        alert(
+          'Invalid URL, please use only lowercase letters, numbers and dashes.'
+        );
+        return;
+      }
+
       setLoading(true);
       Router.push(`/${url}`).then(() => setLoading(false));
     }
@@ -91,6 +100,10 @@ export default function Home() {
             Create new page
           </button>
         </div>
+        <span className='text-neutral-500 font-semibold'>
+          Please enter a valid url, only lowercase letters, numbers and dashes
+          are allowed.
+        </span>
 
         {/* Footer fixed to bottom*/}
         <footer className='absolute bottom-0 left-0 w-full flex flex-row justify-center gap-2 p-4'>
