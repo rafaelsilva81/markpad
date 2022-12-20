@@ -73,10 +73,7 @@ export default function Home() {
 
         <p className='text-lg mt-2'>
           Create a new page by clicking the button below or just enter a new
-          url! Example:{' '}
-          <span className='text-neutral-600 font-semibold italic'>
-            ({window.location.href}your-page)
-          </span>
+          url!
         </p>
 
         {/* Create new page button */}

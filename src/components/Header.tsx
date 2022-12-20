@@ -2,6 +2,7 @@ import { Dialog } from '@headlessui/react';
 import { ArrowLeft, LockSimple, Share } from 'phosphor-react';
 import React, { useState } from 'react';
 import LockDialog from './LockDialog';
+import Router from 'next/router';
 
 interface HeaderProps {
   slug: string;
@@ -25,7 +26,7 @@ const Header = (props: HeaderProps) => {
       <div className='flex flex-row gap-2 items-center'>
         <button
           className='flex items-center bg-neutral-100 rounded-md p-2 hover:bg-neutral-200 transition ease-in-out'
-          onClick={() => window.history.back()}>
+          onClick={() => Router.back()}>
           <ArrowLeft size={20} />
         </button>
         <h1 className='md:text-xl font-semibold'>/{slug}</h1>
