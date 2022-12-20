@@ -5,8 +5,7 @@ import Viewer from '../components/Viewer';
 import api from '../lib/axios';
 import Header from '../components/Header';
 import Toolbar from '../components/Toolbar';
-import Link from 'next/link';
-import Router from 'next/router';
+import LockedFooter from '../components/LockedFooter';
 
 /* TODO: Componentizaion and File Locking */
 
@@ -78,7 +77,7 @@ const Page = (props: PageProps) => {
           content='width=device-width, initial-scale=1'
         />
       </Head>
-      <main className='h-screen w-screen bg-neutral-100 flex flex-col'>
+      <main className='h-screen bg-neutral-100 flex flex-col'>
         {/* Header */}
         {!isLocked && (
           <Header
@@ -106,35 +105,9 @@ const Page = (props: PageProps) => {
             <Viewer text={text} />
           </div>
         </div>
+
+        {isLocked && <LockedFooter />}
       </main>
-
-      {isLocked && (
-        <footer>
-          <div className='fixed bottom-0 left-0 w-full bg-neutral-100 p-4'>
-            <div className='flex flex-row justify-between'>
-              <p className='text-neutral-500'>
-                {`This page is locked and you can't edit it. To create a new page, `}
-                <Link
-                  href='/'
-                  className='font-bold text-neutral-600'>
-                  click here
-                </Link>
-              </p>
-
-              <p className='text-neutral-500'>
-                Markpad - Built with ❤️ by{' '}
-                <a
-                  href='https://rafaeldev.me'
-                  target='_blank'
-                  rel='noreferrer'
-                  className='text-neutral-600 font-bold hover:bg-neutral-300 rounded-md p-1 transition ease-in-out'>
-                  @rafaelsilva81
-                </a>
-              </p>
-            </div>
-          </div>
-        </footer>
-      )}
     </>
   );
 };

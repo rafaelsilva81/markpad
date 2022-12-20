@@ -10,8 +10,8 @@ const MarkdownComponents: object = {
       const image = node.children[0];
       const metastring = image.properties.alt;
       const alt = metastring?.replace(/ *\{[^)]*\} */g, '');
-      const width = '500';
-      const height = '500';
+      const width = parseInt(metastring?.match(/width=(\d+)/)?.[1] || '100');
+      const height = parseInt(metastring?.match(/height=(\d+)/)?.[1] || '100');
 
       return (
         <Image
