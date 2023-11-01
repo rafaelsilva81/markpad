@@ -1,7 +1,7 @@
 // Save new content to db
-import { NextApiRequest, NextApiResponse } from 'next';
-import { PrismaClient } from '@prisma/client';
-import z from 'zod';
+import { PrismaClient } from "@prisma/client";
+import { NextApiRequest, NextApiResponse } from "next";
+import z from "zod";
 
 const saveData = async (req: NextApiRequest, res: NextApiResponse) => {
   // Validate content
@@ -26,7 +26,7 @@ const saveData = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(200).json(page);
   } catch (e) {
     console.log(e);
-    return res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: "Internal server error" });
   }
 };
 
